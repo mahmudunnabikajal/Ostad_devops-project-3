@@ -42,13 +42,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
       - name: Download test results
         uses: actions/download-artifact@v4
         with:
           name: test-results
 
       - name: Display test results
-        run: cat test-results.txt
+        run: cat test-results.txt || true
 
       - name: Install Dependencies
         run: npm install
